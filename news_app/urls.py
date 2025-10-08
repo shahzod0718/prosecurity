@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import news_list,news_detail,homePageView,contactPageView,error404PageView,detailPageView\
+from .views import news_list,news_detail,homePageView,contactPageView,error404PageView\
 ,sportPageView,mahalliyPageView,texnologiyaPageView,xorijPageView,ShouBiznesPageView,SearchResultsList
 
 
@@ -9,7 +9,6 @@ urlpatterns=[
     path('news/<slug:news>/',news_detail,name='news_detail_page'),
     path('contact-us/',contactPageView,name='contact_page'),
     path('page-404',error404PageView,name='error404_page'),
-    path('detail-page/',detailPageView,name='detail_page'),
     path('mahalliy/',mahalliyPageView,name='mahalliy_page'),
     path('sport/',sportPageView,name='sport_page'),
     path('texnologiya',texnologiyaPageView,name='texnologiya_page'),

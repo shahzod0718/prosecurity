@@ -260,14 +260,6 @@ def error404PageView(request):
 
 
 
-def detailPageView(request,):
-    
-    context={
-    
-    }
-    return render(request,'news/detail-page.html',context)
-
-
 
 
 

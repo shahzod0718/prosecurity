@@ -8,6 +8,7 @@ pillow = "*"
 django-hitcount = "*"
 django = "==4.0"
 django-ckeditor = "*"
+python-decouple = "*"
 
 [dev-packages]
 
