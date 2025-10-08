@@ -1,0 +1,37 @@
+{% extends "news/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="mb-4 text-center">🔍 Qidiruv natijalari</h2>
+
+    {% if barcha_yangiliklar %}
+        <div class="row g-4">
+            {% for yangilik in barcha_yangiliklar %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0 rounded-3">
+                        <a href="{% url 'news_detail_page' yangilik.slug %}"> 
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title mb-3">
+                                
+                                    
+                                    
+                                <img class="card-img-top img-fluid rounded-top" style="object-fit: cover; height: 200px;" src="{{yangilik.image.url}}" alt="bu yerda rasm bor">
+                                {{ yangilik.title }}
+                            </h5>
+                            <p class="card-text text-muted small mb-4">
+                                    {{ yangilik.body|truncatewords:25 }}
+                            </p>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning text-center rounded-3 shadow-sm" role="alert">
+            Hech qanday natija topilmadi 😔
+        </div>
+    {% endif %}
+</div>
+{% endblock content %}

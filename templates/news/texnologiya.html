@@ -1,0 +1,47 @@
+{%extends 'news/base.html'%}
+{%load static%}
+{%block title%}shou biznes{%endblock title%}
+
+
+{%block content%}
+
+
+<!-- Header -->
+    <section class="category-header">
+    <div class="container">
+        <h1 class="fw-bold">Texnologiya Yangiliklar</h1>
+        <p class="lead">Texnologiya olamidagi yangiliklar va innovatsiyalarni birinchi bo‘lib o‘qing</p>
+    </div>
+    </section>
+
+    <!-- News list -->
+    <div class="container my-5">
+    <div class="row g-4">
+        {% for news in texnologiya_news %}
+        <div class="col-md-4">
+        <div class="card h-100">
+            
+            
+            {% if news.image %}
+            <img src="{{ news.image.url }}" class="card-img-top" alt="{{ news.title }}">
+            {% else %}
+            <img src="{% static 'img/no-image.jpg' %}" class="card-img-top" alt="No image">
+            {% endif %}
+            <div class="card-body">
+            <a href="{{news.get_absolute_url}}"> 
+            <h5 class="card-title">{{ news.title|truncatechars:60 }}</h5></a>
+            <p class="card-text">{{ news.body|truncatewords:20 }}</p>
+            </div>
+            
+            
+        </div>
+        </div>
+        {% empty %}
+        <p>Hozircha yangiliklar yo‘q.</p>
+        {% endfor %}
+    </div>
+    </div>
+
+
+
+{%endblock content%}

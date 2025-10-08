@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News list</title>
+</head>
+<body>
+    <h1>All news list</h1>
+    {%for new_detail in news_list %}
+    <ul>
+        <a href="{%url 'news_detail_page' new_detail.id%}"><li>{{new_detail.title}}</li></a>
+    </ul>
+    
+
+
+    {%endfor%}
+
+</body>
+</html>

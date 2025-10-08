@@ -1,0 +1,277 @@
+
+{%load static %}
+ {% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{%block title%}{%endblock title%}</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@100;600;800&display=swap" rel="stylesheet"> 
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="{%static 'css/lib/animate/animate.min.css'%}" rel="stylesheet">
+        <link href="{%static 'css/lib/owlcarousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
+
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="{%static 'css/bootstrap.min.css'%}" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="{%static 'css/style.css'%}" rel="stylesheet">
+    </head>
+    <body>
+        
+    
+        <!-- Spinner Start -->
+        <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" role="status"></div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Navbar start -->
+        <div class="container-fluid sticky-top px-0">
+            <div class="container-fluid topbar bg-dark d-none d-lg-block">
+                <div class="container px-0">
+                    <div class="topbar-top d-flex justify-content-between flex-lg-wrap">
+                        <div class="top-info flex-grow-0">
+                            <span class="rounded-circle btn-sm-square bg-primary me-2">
+                                <i class="fas fa-bolt text-white"></i>
+                            </span>
+                            <div class="pe-2 me-3 border-end border-white d-flex align-items-center">
+                                <p class="mb-0 text-white fs-6 fw-normal">Mashhur</p>
+                            </div>
+                            <div class="overflow-hidden" style="width: 735px;">
+                                <div id="note" class="ps-2 d-flex" style="white-space: nowrap;">
+                                    {% for news in latest_news %}
+                                    <div class="d-flex align-items-center me-4">
+                                        <img src="{{news.image.url}}" class="img-fluid rounded-circle border border-3 border-primary me-2" style="width: 30px; height: 30px;" alt="">
+                                        <p class="text-white mb-0 link-hover">{{news.title|truncatewords:5}}</p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="top-link flex-lg-wrap">
+                            
+                            <i class="fas fa-calendar-alt text-white border-end border-secondary pe-2 me-2"> <span class="text-body">{{today|date:"d-m-Y"}}</span></i>
+                            
+                            <div class="d-flex icon">
+                                <p class="mb-0 text-white me-2">Ijtimoiy Tarmoqlar:</p>
+                                <a href="https://www.facebook.com/shahzod.omondavlatov" class="me-2"><i class="fab fa-facebook-f text-body link-hover"></i></a>
+                                <!-- <a href="" class="me-2"><i class="fab fa-twitter text-body link-hover"></i></a> -->
+                                <a href="https://www.instagram.com/janob_hechkim64/" class="me-2"><i class="fab fa-instagram text-body link-hover"></i></a>
+                                <a href="https://www.youtube.com/@shahzodbekomondavlatov142" class="me-2"><i class="fab fa-youtube text-body link-hover"></i></a>
+                                <a href="https://t.me/users625" class="me-2"><i class="fab fa-telegram text-body link-hover"></i></a>
+                                <!-- <a href="" class="me-2"><i class="fab fa-linkedin-in text-body link-hover"></i></a> -->
+                                <!-- <a href="" class="me-2"><i class="fab fa-skype text-body link-hover"></i></a> -->
+                                <!-- <a href="" class=""><i class="fab fa-pinterest-p text-body link-hover"></i></a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid bg-light">
+                <div class="container px-0">
+                    <nav class="navbar navbar-light navbar-expand-xl">
+                        <a href="{%url 'home_page'%}" class="navbar-brand mt-3">
+                            <p class="text-primary display-5 mb-2" style="line-height: 0;">ProSecurity</p>
+                            <!-- <small class="text-body fw-normal" style="letter-spacing: 12px;">yangi Xabarlar</small> -->
+                        </a>
+                        <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                            <span class="fa fa-bars text-primary"></span>
+                        </button>
+                        <div class="collapse navbar-collapse bg-light py-3" id="navbarCollapse">
+                            <div class="navbar-nav mx-auto border-top">
+                                <a href="{%url 'home_page'%}" class="nav-item nav-link active">Bosh sahifa</a>
+                                <!-- <a href="{%url 'detail_page'%}" class="nav-item nav-link">Batafsil sahifa</a> -->
+                                
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Kategoriya</a>
+                                    
+                                    <div class="dropdown-menu m-0 bg-secondary rounded-0">
+                                        
+                                        <a href="{%url 'sport_page'%}" class="dropdown-item">Sport</a>
+                                        <a href="{%url 'mahalliy_page'%}" class="dropdown-item">Mahalliy</a>
+                                        <a href="{%url 'xorij_page'%}" class="dropdown-item">Xorij</a>
+                                        <a href="{%url 'texnologiya_page'%}" class="dropdown-item">Texnologiya</a>
+                                        <a href="{%url 'shou_biznes_page'%}" class="dropdown-item">Shou Biznes</a>
+                                    
+                                    </div>
+                                </div>
+                                <a href="{%url 'contact_page'%}" class="nav-item nav-link">Biz bilan bog‘lanish</a>
+                                <a href="{%url 'error404_page'%}" class="nav-item nav-link">Xato sahifa (404)</a>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 border-top pt-3 pt-xl-0">
+                            
+
+                                <button class="btn btn-white border border-primary btn-md-square rounded-circle" 
+                                        data-bs-toggle="modal" data-bs-target="#searchModal">
+                                    <i class="fas fa-search text-primary"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar End -->
+
+
+        <!-- Modal Search Start -->
+        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Qidiruv Oynasi</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    
+                    <div class="modal-body d-flex align-items-center">
+                        <div class="input-group w-75 mx-auto d-flex">
+                            <form aria-describedby="search-icon-1" class="form-control p-3" method="get" action="{%url 'search_results'%}">
+                                <input type="search" name="q" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                            </form>
+                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Search End -->
+
+        {%block content%}
+
+        {%endblock content%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Footer Start -->
+        <div class="container-fluid bg-dark footer py-5">
+            <div class="container py-5">
+                <div class="pb-4 mb-4" style="border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+                    <div class="row g-4">
+                        <div class="col-lg-3">
+                            <a href="#" class="d-flex flex-column flex-wrap">
+                                <p class="text-white mb-0 display-6">Newsers</p>
+                                <small class="text-light" style="letter-spacing: 11px; line-height: 0;">Newspaper</small>
+                            </a>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="d-flex position-relative rounded-pill overflow-hidden">
+                                <input class="form-control border-0 w-100 py-3 rounded-pill" type="email" placeholder="example@gmail.com">
+                                <button type="submit" class="btn btn-primary border-0 py-3 px-5 rounded-pill text-white position-absolute" style="top: 0; right: 0;">Obuna Bo'ling</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-lg-6 col-xl-3">
+                        <div class="footer-item-1">
+                            <h4 class="mb-4 text-white">Biz Bilan Bog'laning</h4>
+                            <p class="text-secondary line-h">Address: <span class="text-white">Termiz,Sh.Rashidov</span></p>
+                            <p class="text-secondary line-h">Email: <span class="text-white">shahzodbekomondavlatov77@gmail.com</span></p>
+                            <p class="text-secondary line-h">Phone: <span class="text-white">+998 91 982 76 07</span></p>
+                            <div class="d-flex line-h">
+                                <a class="btn btn-light me-2 btn-md-square rounded-circle" href=""><i class="fab fa-twitter text-dark"></i></a>
+                                <a class="btn btn-light me-2 btn-md-square rounded-circle" href=""><i class="fab fa-facebook-f text-dark"></i></a>
+                                <a class="btn btn-light me-2 btn-md-square rounded-circle" href=""><i class="fab fa-youtube text-dark"></i></a>
+                                <a class="btn btn-light btn-md-square rounded-circle" href=""><i class="fab fa-linkedin-in text-dark"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 col-xl-3">
+                        <div class="d-flex flex-column text-start footer-item-3">
+                            <h4 class="mb-4 text-white">Kategoriya</h4>
+                            {%for category in categories%}
+
+                            {% if category.name == "mahalliy" %}
+                            <a class="btn-link text-white" href="{%url 'mahalliy_page'%}">
+                                <i class="fas fa-angle-right text-white me-2"></i>{{category.name|capfirst}}</a>
+                            {% elif category.name == "sport" %}
+                            <a class="btn-link text-white" href="{%url 'sport_page'%}">
+                                <i class="fas fa-angle-right text-white me-2"></i>{{category.name|capfirst}}</a>
+                            {% elif category.name == "xorij" %}
+                            <a class="btn-link text-white" href="{%url 'xorij_page'%}">
+                                <i class="fas fa-angle-right text-white me-2"></i>{{category.name|capfirst}}</a>
+                            {% elif category.name == "texnologiya" %}
+                            <a class="btn-link text-white" href="{%url 'texnologiya_page'%}">
+                                <i class="fas fa-angle-right text-white me-2"></i>{{category.name|capfirst}}</a>
+                            {% elif category.name == "shouBiznes" %}
+                            <a class="btn-link text-white" href="{%url 'shou_biznes_page'%}">
+                                <i class="fas fa-angle-right text-white me-2"></i>{{category.name|capfirst}}</a>
+                            {%endif%}
+
+
+
+                            {%endfor%}
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-3">
+                        <div class="footer-item-4">
+                            <h4 class="mb-4 text-white">Rasmlar to‘plami</h4>
+                            
+                            <div class="row g-2">
+                                {%for news in galery_news%}
+                                    <div class="col-4">
+                                        <div class="rounded overflow-hidden">
+                                            <img src="{{news.image.url}}" class="img-zoomin img-fluid rounded w-100" alt="">
+                                        </div>
+                                    </div>
+                                {%endfor%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+
+
+{%block javascript%}
+            <!-- JavaScript Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{%static 'css/lib/easing/easing.min.js'%}"></script>
+<script src="{%static 'css/lib/waypoints/waypoints.min.js'%}"></script>
+<script src="{%static 'css/lib/owlcarousel/owl.carousel.min.js'%}"></script>
+
+<!-- Template Javascript -->
+<script src="{%static 'js/main.js'%}"></script>  
+{%endblock javascript%}      
+
+
+    </body>
+</html>
+    
+
+    

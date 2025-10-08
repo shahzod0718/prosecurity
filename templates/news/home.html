@@ -1,0 +1,613 @@
+
+{%extends 'news/base.html'%}
+{%load static%} 
+{%block title%} Bosh sahifa {%endblock title%}
+{% load hitcount_tags %}
+{%load i18n%}
+
+{%block content%}
+        <!-- Features Start -->
+        <div class="container-fluid features mb-1">
+            <div class="container py-5">
+                <div class="row g-4">
+                
+                    
+                </div>
+            </div>
+        </div>
+        <!-- Features End -->
+
+
+        <!-- Main Post Section Start -->
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="row g-4">
+                    <div class="col-lg-7 col-xl-8 mt-0"> 
+                    {%for news in news_one%}
+                        <div class="position-relative overflow-hidden rounded">
+                            <img src="{{ news.image.url }}" class="img-fluid rounded img-zoomin w-100" alt="">
+                            <div class="d-flex justify-content-center px-4 position-absolute flex-wrap" style="bottom: 10px; left: 0;">
+                                <!-- <a href="#" class="text-white me-3 link-hover"><i class="fa fa-clock"></i> 06 minute read</a> -->
+                                <a href="#" class="text-white me-3 link-hover"><i class="fa fa-eye"></i>{% get_hit_count for news %} ta ko'rildi</a>
+                                <!-- <a href="#" class="text-white me-3 link-hover"><i class="fa fa-comment-dots"></i> 05 Comment</a>
+                                <a href="#" class="text-white link-hover"><i class="fa fa-arrow-up"></i> 1.5k Share</a> -->
+                            </div>
+                        </div>
+                        <div class="border-bottom py-3">
+                            <a href="{{news.get_absolute_url}}"  class="display-6 text-dark mb-0 link-hover">{{news.title }}</a>
+                        </div>
+                        <p class="mt-3 mb-4">{{ news.body |truncatewords:20|safe }}</p>
+                    {%endfor%}
+
+
+
+
+                    {% for news in most_viewed_news_list %}
+                        <div class="bg-light p-4 rounded">
+                            <div class="news-2">
+                                <h3 class="mb-4">{%blocktrans%}Ommabop{%endblocktrans%}</h3>
+                            </div>
+                            <div class="row g-4 align-items-center">
+                                <div class="col-md-6">
+                                    <div class="rounded overflow-hidden">
+                                        <img src="{{news.image.url}}" class="img-fluid rounded img-zoomin w-100" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex flex-column">
+                                        <a href="{{ news.get_absolute_url }}" class="h3">{{ news.title }}</a>
+                                        <!-- <p class="mb-0 fs-5"><i class="fa fa-clock"> 06 minute read</i> </p> -->
+                                        <p class="mb-0 fs-5"><i class="fa fa-eye"> {% get_hit_count for news %} ta ko'rildi</i></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <div class="col-lg-5 col-xl-4">
+                    <div class="bg-light rounded p-4 pt-0">
+                            <div class="row g-4">
+                                {%for news in news_two %}
+                                <div class="col-12">
+                                    <div class="rounded overflow-hidden">
+                                        <img src="{{news.image.url}}" class="img-fluid rounded img-zoomin w-100" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex flex-column">
+                                        <a href="{{news.get_absolute_url}}" class="h4 mb-2">{{news.title}}</a>
+                                        <!-- <p class="fs-5 mb-0"><i class="fa fa-clock"> 06 minute read</i> </p> -->
+                                        <p class="fs-5 mb-0"><i class="fa fa-eye"> {% get_hit_count for news %}{%blocktrans%} ta ko'rildi{%endblocktrans%}</i></p>
+                                    </div>
+                                </div>
+                                {%endfor%}
+                            
+
+                                {%for news in news_list%}
+                                <div class="col-12">
+                                    <div class="row g-4 align-items-center">
+                                        <div class="col-5">
+                                            <div class="overflow-hidden rounded">
+                                                <img src="{{news.image.url}}" class="img-zoomin img-fluid rounded w-100" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-7">
+                                            <div class="features-content d-flex flex-column">
+                                                <a href="{{news.get_absolute_url}}" class="h6">{{news.title}}</a>
+                                                <!-- <small><i class="fa fa-clock"> 06 minute read</i> </small> -->
+                                                <small><i class="fa fa-eye"> {% get_hit_count for news %}{%blocktrans%} ta ko'rildi{%endblocktrans%}</i></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endfor%}
+
+
+
+                            
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Post Section End -->
+
+
+        <!-- Banner Start -->
+        <!-- <div class="container-fluid py-5 my-5" style="background: linear-gradient(rgba(202, 203, 185, 1), rgba(202, 203, 185, 1));">
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-7">
+                        <h1 class="mb-4 text-primary">Newsers</h1>
+                        <h1 class="mb-4">Haftalik yangiliklardan xabardor bo‘ling</h1>
+                        <p class="text-dark mb-4 pb-2">Email manzilingizni kiriting va eng so‘nggi yangiliklarni bevosita qabul qiling.</p>
+                        <div class="position-relative mx-auto">
+                            <input class="form-control w-100 py-3 rounded-pill" type="email" placeholder="Email kiriting">
+                            <button type="submit" class="btn btn-primary py-3 px-5 position-absolute rounded-pill text-white h-100" style="top: 0; right: 0;">Yuborish</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="rounded">
+                            <img src="{%static 'images/banner-img.jpg'%}" class="img-fluid rounded w-100 rounded" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- Banner End -->
+
+
+        <!-- Latest News Start -->
+        <div class="container-fluid latest-news py-5">
+            <div class="container py-5">
+                <h2 class="mb-4">{%blocktrans%}So‘nggi yangiliklar{%endblocktrans%}</h2>
+                <div class="latest-news-carousel owl-carousel">
+                    
+                    {%for news in news_list%}
+                    <div class="latest-news-item">
+                        <div class="bg-light rounded">
+                            <div class="rounded-top overflow-hidden">
+                                <img src="{{news.image.url}}" class="img-zoomin img-fluid rounded-top w-100" alt="">
+                            </div>
+                            <div class="d-flex flex-column p-4">
+                                <a href="{{news.get_absolute_url}}" class="h4">{{news.title}}</a>
+                                <div class="d-flex justify-content-between">
+                                    <a href="#" class="small text-body link-hover">admin</a>
+                                    <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i>{{news.publish_time|date:"d-m-Y | H:i"}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+        <!-- Latest News End -->
+
+
+        <!-- Most Populer News Start -->
+        <div class="container-fluid populer-news py-5">
+            <div class="container py-5">
+                <div class="tab-class mb-4">
+                    <div class="row g-4">
+                        <div class="col-lg-8 col-xl-9">
+                            <div class="d-flex flex-column flex-md-row justify-content-md-between border-bottom mb-4">
+                                <h1 class="mb-4">Nima yangiliklar bor?</h1>
+                                <ul class="nav nav-pills d-inline-flex text-center">
+                                    <li class="nav-item mb-3">
+                                        <a class="d-flex py-2 bg-light rounded-pill active me-2" data-bs-toggle="pill" href="#tab-1">
+                                            <span class="text-dark" style="width: 100px;">Sport</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item mb-3">
+                                        <a class="d-flex py-2 bg-light rounded-pill me-2" data-bs-toggle="pill" href="#tab-2">
+                                            <span class="text-dark" style="width: 100px;">Mahalliy</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item mb-3">
+                                        <a class="d-flex py-2 bg-light rounded-pill me-2" data-bs-toggle="pill" href="#tab-3">
+                                            <span class="text-dark" style="width: 100px;">Xorij</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item mb-3">
+                                        <a class="d-flex py-2 bg-light rounded-pill me-2" data-bs-toggle="pill" href="#tab-4">
+                                            <span class="text-dark" style="width: 100px;">Texnologiya</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="tab-content mb-4">
+                                <div id="tab-1" class="tab-pane fade show p-0 active">
+                                    <div class="row g-4">
+                                        <div class="col-lg-8">
+                                            {%for sports in sport_one%}
+                                            <div class="position-relative rounded overflow-hidden">
+                                                <img src="{{sports.image.url}}" class="img-zoomin img-fluid rounded w-100" alt="">
+                                                <div class="position-absolute text-white px-4 py-2 bg-primary rounded" style="top: 20px; right: 20px;">                                              
+                                                    Sports
+                                                </div>
+                                            </div>
+                                                <a href="#" class="text-dark link-hover me-3"><i class="fa fa-eye"></i>  {% get_hit_count for sports %} ta ko'rildi</a>
+
+                                            <div class="my-4">
+                                                <a href="{{sports.get_absolute_url}}" class="h4">{{sports.title}}</a>
+                                                <p>{{sports.body|safe|truncatewords:50}}</p>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <!-- <a href="#" class="text-dark link-hover me-3"><i class="fa fa-clock"></i> 06 minute read</a> -->
+                                                <!-- <a href="#" class="text-dark link-hover me-3"><i class="fa fa-comment-dots"></i> 05 Comment</a> -->
+                                                <!-- <a href="#" class="text-dark link-hover"><i class="fa fa-arrow-up"></i> 1.5k Share</a> -->
+                                            </div>
+                                            
+                                            {%endfor%}
+
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="row g-4">
+                                                
+                                                
+                                                {%for sport in sport_news%}
+                                                <div class="col-12">
+                                                    <div class="row g-4 align-items-center">
+                                                        <div class="col-5">
+                                                            <div class="overflow-hidden rounded">
+                                                                <img src="{{sport.image.url}}" class="img-zoomin img-fluid rounded w-100" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-7">
+                                                            <div class="features-content d-flex flex-column">
+                                                                <p class="text-uppercase mb-2">Sport</p>
+                                                                <a href="{{sport.get_absolute_url}}" class="h6">{{sport.title}}</a>
+                                                                <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i>{{sport.publish_time|date:"d-m-Y | H:i"}}</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {%endfor%}                                                                         
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id="tab-2" class="tab-pane fade show p-0">
+                                    <div class="row g-4">
+                                        <div class="col-lg-8">
+                                            
+                                            {% for local in local_one %}
+
+                                            <div class="position-relative rounded overflow-hidden">
+                                                <img src="{{local.image.url}}" class="img-zoomin img-fluid rounded w-100" alt="">
+                                                <div class="position-absolute text-white px-4 py-2 bg-primary rounded" style="top: 20px; right: 20px;">                                              
+                                                    Mahalliy
+                                                </div>
+                                            </div>
+                                            <div class="my-3">
+                                                <a href="{{local.get_absolute_url}}" class="h4">{{local.title}}</a>
+                                            </div>
+                                            
+                                            <div class="d-flex justify-content-between">
+                                                <!-- <a href="#" class="text-dark link-hover me-3"><i class="fa fa-clock"></i> 06 minute read</a> -->
+                                                <a href="#" class="text-dark link-hover me-3"><i class="fa fa-eye"></i> {% get_hit_count for local %} ta ko'rildi</a>
+                                                <!-- <a href="#" class="text-dark link-hover me-3"><i class="fa fa-comment-dots"></i> 05 Comment</a> -->
+                                                <!-- <a href="#" class="text-dark link-hover"><i class="fa fa-arrow-up"></i> 1.5k Share</a> -->
+                                            </div>
+                                        </div>
+
+                                        {% endfor %}
+                                        
+                                        <div class="col-lg-4">
+                                            <div class="row g-4">
+                                                {%for mahalliy in local_news%}
+                                                <div class="col-12">
+                                                    <div class="row g-4 align-items-center">
+                                                        <div class="col-5">
+                                                            <div class="overflow-hidden rounded">
+                                                                <img src="{{mahalliy.image.url}}" class="img-zoomin img-fluid rounded w-100" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-7">
+                                                            <div class="features-content d-flex flex-column">
+                                                                <p class="text-uppercase mb-2">Mahalliy</p>
+                                                                <a href="{{mahalliy.get_absolute_url}}" class="h6">{{mahalliy.title}}</a>
+                                                                <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i>{{mahalliy.publish_time|date:"d-m-Y | H:i"}}</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {%endfor%}
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="tab-3" class="tab-pane fade show p-0">
+                                    <div class="row g-4">
+                                        
+                                        {%for xorijiy in xorij_one%}
+                                        <div class="col-lg-8">
+                                            <div class="position-relative rounded overflow-hidden">
+                                                <img src="{{xorijiy.image.url}}" class="img-zoomin img-fluid rounded w-100" alt="">
+                                                <div class="position-absolute text-white px-4 py-2 bg-primary rounded" style="top: 20px; right: 20px;">                                              
+                                                    Xorij
+                                                </div>
+                                            </div>
+                                            <div class="my-3">
+                                                <a href="{{xorijiy.get_absolute_url}}" class="h4">{{xorijiy.title}}</a>
+                                            </div>
+                                            
+                                            <div class="d-flex justify-content-between">
+                                                <!-- <a href="#" class="text-dark link-hover me-3"><i class="fa fa-clock"></i> 06 minute read</a> -->
+                                                <a href="#" class="text-dark link-hover me-3"><i class="fa fa-eye"></i> {% get_hit_count for xorijiy %} ta ko'rildi</a>
+                                                <!-- <a href="#" class="text-dark link-hover me-3"><i class="fa fa-comment-dots"></i> 05 Comment</a> -->
+                                                <!-- <a href="#" class="text-dark link-hover"><i class="fa fa-arrow-up"></i> 1.5k Share</a> -->
+                                            </div>
+                                        </div>
+                                        {%endfor%}
+                                        
+                                        <div class="col-lg-4">
+                                            <div class="row g-4">
+                                                
+                                                {%for xorij in xorij_news%}
+                                                <div class="col-12">
+                                                    <div class="row g-4 align-items-center">
+                                                        <div class="col-5">
+                                                            <div class="overflow-hidden rounded">
+                                                                <img src="{{xorij.image.url}}" class="img-zoomin img-fluid rounded w-100" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-7">
+                                                            <div class="features-content d-flex flex-column">
+                                                                <p class="text-uppercase mb-2">Xorij</p>
+                                                                <a href="{{xorij.get_absolute_url}}" class="h6">{{xorij.title}}</a>
+                                                                <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i>{{xorij.publish_time|date:"d-m-Y | H:i"}}</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {%endfor%}                   
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div id="tab-4" class="tab-pane fade show p-0">
+                                    <div class="row g-4">
+                                        <div class="col-lg-8">
+                                            {%for techno in techno_one%}
+                                            <div class="position-relative rounded overflow-hidden">
+                                                <img src="{{techno.image.url}}" class="img-zoomin img-fluid rounded w-100" alt="">
+                                                <div class="position-absolute text-white px-4 py-2 bg-primary rounded" style="top: 20px; right: 20px;">                                              
+                                                    Technology
+                                                </div>
+                                            </div>
+                                            <div class="my-3">
+                                                <a href="{{techno.get_absolute_url}}" class="h4">{{techno.title}}</a>
+                                            </div>
+                                            
+                                            <div class="d-flex justify-content-between">
+                                                <!-- <a href="#" class="text-dark link-hover me-3"><i class="fa fa-clock"></i> 06 minute read</a> -->
+                                                <a href="#" class="text-dark link-hover me-3"><i class="fa fa-eye"></i> {% get_hit_count for techno %} ta ko'rildi</a>
+                                                <!-- <a href="#" class="text-dark link-hover me-3"><i class="fa fa-comment-dots"></i> 05 Comment</a> -->
+                                                <!-- <a href="#" class="text-dark link-hover"><i class="fa fa-arrow-up"></i> 1.5k Share</a> -->
+                                            </div>
+                                        </div>
+                                        {%endfor%}
+                                        <div class="col-lg-4">
+                                            <div class="row g-4">
+                                                {%for techno in techno_news%}
+                                                <div class="col-12">
+                                                    <div class="row g-4 align-items-center">
+                                                        <div class="col-5">
+                                                            <div class="overflow-hidden rounded">
+                                                                <img src="{{techno.image.url}}" class="img-zoomin img-fluid rounded w-100" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-7">
+                                                            <div class="features-content d-flex flex-column">
+                                                                <p class="text-uppercase mb-2">Texnologiya</p>
+                                                                <a href="{{techno.get_absolute_url}}" class="h6">{{techno.title}}</a>
+                                                                <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i>{{techno.publish_time|date:"d-m-Y | H:i"}}</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {%endfor%}
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="border-bottom mb-4">
+                                <h2 class="my-4">Ko‘p Ko‘rilgan</h2>
+                            </div>
+                            <div class="whats-carousel owl-carousel">
+                                {%for news in news_list%}
+                                <div class="latest-news-item">
+                                    <div class="bg-light rounded">
+                                        <div class="rounded-top overflow-hidden">
+                                            <img src="{{news.image.url}}" class="img-zoomin img-fluid rounded-top w-100" alt="">
+                                        </div>
+                                        <div class="d-flex flex-column p-4">
+                                            <a href="{{news.get_absolute_url}}" class="h4">{{news.title}}</a>
+                                            <div class="d-flex justify-content-between">
+                                                <a href="#" class="small text-body link-hover">admin</a>
+                                                <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i>{{news.publish_time|date:"d-m-Y | H:i"}}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endfor%}
+                            </div>
+
+                            <div class="mt-5 lifestyle">
+                                <div class="border-bottom mb-4">
+                                    <h1 class="mb-4">Shou Biznes</h1>
+                                </div>
+                                <div class="row g-4">
+                                    {% for shou in shou_biznes %}
+                                    <div class="col-lg-6">
+                                        <div class="lifestyle-item rounded">
+                                            <img src="{{shou.image.url}}" class="img-fluid w-100 rounded" alt="">
+                                            <div class="lifestyle-content">
+                                                <div class="mt-auto">
+                                                    <a href="{{shou.get_absolute_url}}" class="h4 text-white link-hover">{{shou.title}}</a>
+                                                    <div class="d-flex justify-content-between mt-4">
+                                                        <a href="#" class="small text-white link-hover">admin</a>
+                                                        <small class="text-white d-block"><i class="fas fa-calendar-alt me-1"></i>{{shou.publish_time|date:"d-m-Y | H:i"}}</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}             
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        
+                        <div class="col-lg-4 col-xl-3">
+                            <div class="row g-4">
+                                <div class="col-12">
+                                    <div class="p-3 rounded border">
+                                        <h4 class="mb-4">Ijtimoiy tarmoqlarda kuzating</h4>
+                                        <div class="row g-4">
+                                            <div class="col-12">
+                                                <a href="https://www.facebook.com/shahzod.omondavlatov" target="_blank" class="w-100 rounded btn btn-primary d-flex align-items-center p-3 mb-2">
+                                                    <i class="fab fa-facebook-f btn btn-light btn-square rounded-circle me-3"></i>
+                                                    <span class="text-white">13,977 Fans</span>
+                                                </a>
+                                                <a href="#" class="w-100 rounded btn btn-info d-flex align-items-center p-3 mb-2">
+                                                    <i class="fab fa-twitter btn btn-light btn-square rounded-circle me-3"></i>
+                                                    <span class="text-white">21,798 Follower</span>
+                                                </a>
+                                                <a href="https://www.youtube.com/@shahzodbekomondavlatov142" class="w-100 rounded btn btn-danger d-flex align-items-center p-3 mb-2">
+                                                    <i class="fab fa-youtube btn btn-light btn-square rounded-circle me-3"></i>
+                                                    <span class="text-white">7,999 Subscriber</span>
+                                                </a>
+                                                <a href="https://www.instagram.com/janob_hechkim64" class="w-100 rounded btn btn-dark d-flex align-items-center p-3 mb-2">
+                                                    <i class="fab fa-instagram btn btn-light btn-square rounded-circle me-3"></i>
+                                                    <span class="text-white">19,764 Follower</span>
+                                                </a>
+                                                <!-- <a href="#" class="w-100 rounded btn btn-secondary d-flex align-items-center p-3 mb-2">
+                                                    <i class="bi-cloud btn btn-light btn-square rounded-circle me-3"></i>
+                                                    <span class="text-white">31,999 Subscriber</span>
+                                                </a> -->
+                                                <a href="https://t.me/users625" class="w-100 rounded btn btn-secondary d-flex align-items-center p-3 mb-4">
+                                                    <i class="fab fa-telegram btn btn-light btn-square rounded-circle me-3"></i>
+                                                    <span class="text-white">37,999 Subscriber</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        
+                                        <h4 class="my-4">Ommabop yangiliklar</h4>
+                                        <div class="row g-4">
+                                            
+                                            <div class="col-12">
+                                                <div class="row g-4 align-items-center features-item">
+                                                    <div class="col-4">
+                                                        <div class="rounded-circle position-relative">
+                                                            <div class="overflow-hidden rounded-circle">
+                                                                <img src="{%static 'images/features-sports-1.jpg'%}" class="img-zoomin img-fluid rounded-circle w-100" alt="">
+                                                            </div>
+                                                            <span class="rounded-circle border border-2 border-white bg-primary btn-sm-square text-white position-absolute" style="top: 10%; right: -10px;">3</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <div class="features-content d-flex flex-column">
+                                                            <p class="text-uppercase mb-2">Sport</p>
+                                                            <a href="{%url 'sport_page'%}" class="h6">
+                                                                Eng yangi sport yangiliklari va voqealar
+                                                            </a>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-12">
+                                                <div class="row g-4 align-items-center features-item">
+                                                    <div class="col-4">
+                                                        <div class="rounded-circle position-relative">
+                                                            <div class="overflow-hidden rounded-circle">
+                                                                <img src="{%static 'images/features-technology.jpg'%}" class="img-zoomin img-fluid rounded-circle w-100" alt="">
+                                                            </div>
+                                                            <span class="rounded-circle border border-2 border-white bg-primary btn-sm-square text-white position-absolute" style="top: 10%; right: -10px;">3</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <div class="features-content d-flex flex-column">
+                                                            <p class="text-uppercase mb-2">Texnologiya</p>
+                                                            <a href="{%url 'texnologiya_page'%}" class="h6">
+                                                                Innovatsiyalar, gadjetlar va texnologiya yangiliklari
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row g-4 align-items-center features-item">
+                                                    <div class="col-4">
+                                                        <div class="rounded-circle position-relative">
+                                                            <div class="overflow-hidden rounded-circle">
+                                                                <img src="{%static 'images/features-fashion.jpg'%}" class="img-zoomin img-fluid rounded-circle w-100" alt="">
+                                                            </div>
+                                                            <span class="rounded-circle border border-2 border-white bg-primary btn-sm-square text-white position-absolute" style="top: 10%; right: -10px;">3</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <div class="features-content d-flex flex-column">
+                                                            <p class="text-uppercase mb-2">Shou Biznes</p>
+                                                            <a href="{%url 'shou_biznes_page'%}" class="h6">
+                                                                Moda, kino va yulduzlar yangiliklari
+                                                            </a>
+                                                            <!-- <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i> December 9, 2024</small> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row g-4 align-items-center features-item">
+                                                    <div class="col-4">
+                                                        <div class="rounded-circle position-relative">
+                                                            <div class="overflow-hidden rounded-circle">
+                                                                <img src="{%static 'images/features-life-style.jpg'%}" class="img-zoomin img-fluid rounded-circle w-100" alt="">
+                                                            </div>
+                                                            <span class="rounded-circle border border-2 border-white bg-primary btn-sm-square text-white position-absolute" style="top: 10%; right: -10px;">3</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <div class="features-content d-flex flex-column">
+                                                            <p class="text-uppercase mb-2">Xorij Yangiliklari</p>
+                                                            <a href="{%url 'xorij_page'%}" class="h6">
+                                                                Xorijdagi so‘nggi siyosiy, iqtisodiy va ijtimoiy yangiliklar
+                                                            </a>
+                                                            <!-- <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i> December 9, 2024</small> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
+
+                                            <!-- <div class="col-lg-12">
+                                                <a href="#" class="link-hover btn border border-primary rounded-pill text-dark w-100 py-3 mb-4">Batafsil</a>
+                                            </div> -->
+                                            <div class="col-lg-12">
+                                                <div class="border-bottom my-3 pb-3">
+                                                <h4 class="mb-0">Mashhur Teglar</h4>
+                                                </div>
+                                                <ul class="nav nav-pills d-inline-flex text-center mb-4">
+                                                    {%for category in categories%}
+                                                    <li class="nav-item mb-3">
+                                                        <a class="d-flex py-2 bg-light rounded-pill me-2" href="#">
+                                                            <span class="text-dark link-hover" style="width: 90px;">{{category.name|capfirst}}</span>
+                                                        </a>
+                                                    </li>
+                                                    {%endfor%}
+                                                    
+                                                </ul>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Most Populer News End -->
+
+{%endblock content%}
